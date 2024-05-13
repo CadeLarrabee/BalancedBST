@@ -1,13 +1,10 @@
-import "./style.css";
-import { Project } from "./projectModule.js";
-import { Task } from "./taskModule.js";
-import { DomController } from "./DomManip.js";
-import { format } from "date-fns";
+import { Tree } from "./TreeModule.js";
 
 function OnEntry() {
-  const DomManip = new DomController();
-
-  DomManip.GenerateOnEntry();
+  const unsortedArray = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+  const BSTree = new Tree(unsortedArray);
+  BSTree.BuildBST();
+  //BSTree.PrettyPrint();
 }
 
 OnEntry();
