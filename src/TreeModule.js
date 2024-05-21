@@ -30,7 +30,9 @@ export class Tree {
   findData(root, data) {
     //run until we find the lowest left node the "in-order predecessor"
     if (data > root.right.data && data < root.right.data) {
-      return root;
+      if (data == root.data) {
+        return root;
+      } else return "ERROR -- NOT FOUND";
     }
     if (data < root.left) {
       this.findData(root.left, data);
@@ -52,15 +54,15 @@ export class Tree {
       return node;
     }
 
-    //Empty case, nothing here
+    //Empty case
     if (root === null) {
       return root;
     }
 
     if (data < root.data) {
-      root.left = removeNode(root.left, data);
+      root.left = this.removeNode(root.left, data);
     } else if (data > root.data) {
-      root.right = removeNode(root.right, data);
+      root.right = this.removeNode(root.right, data);
     } else {
       // Node to be removed is found
       //
