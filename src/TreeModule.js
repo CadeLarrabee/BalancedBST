@@ -27,6 +27,63 @@ export class Tree {
     return TreeNode;
   };
 
+  findData(root, data) {
+    //run until we find the lowest left node the "in-order predecessor"
+    if (data > root.right.data && data < root.right.data) {
+      return root;
+    }
+    if (data < root.left) {
+      this.findData(root.left, data);
+    } else if (data > root.right) {
+      this.findData(node.right, data);
+    }
+  }
+
+  RemoveNode(data) {
+    this.root = this.removeNode(this.root, data);
+  }
+
+  removeNode(root, data) {
+    function findMin(node) {
+      //run until we find the lowest left node the "in-order predecessor"
+      while (node.left != null) {
+        node = node.left;
+      }
+      return node;
+    }
+
+    //Empty case, nothing here
+    if (root === null) {
+      return root;
+    }
+
+    if (data < root.data) {
+      root.left = removeNode(root.left, data);
+    } else if (data > root.data) {
+      root.right = removeNode(root.right, data);
+    } else {
+      // Node to be removed is found
+      //
+      //If there is no children, set the root to null
+      if (root.left == null && root.right == null) {
+        return null;
+      }
+      //else if there is one child, return it as the new root node
+      else if (root.left == null) {
+        return root.right;
+      } else if (root.right == null) {
+        return root.left;
+      }
+      //If there are more than one child, find the successor on the left side of its tree
+      //continue removing until we have a stable tree
+      else {
+        let successor = findMin(root.right);
+        root.data = successor.data;
+        root.right = this.removeNode(root.right, successor.data);
+      }
+    }
+  }
+
   prettyPrint(node, prefix = "", isLeft = true) {
     if (node === null) {
       return;

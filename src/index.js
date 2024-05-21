@@ -5,6 +5,7 @@ function OnEntry() {
   const BSTree = new Tree(unsortedArray);
   BSTree.BuildBST(null, 0, BSTree.getArray().length);
   BSTree.prettyPrint(BSTree.getBSTRoot());
+  BSTree.removeNode(BSTree.getBSTRoot(), 67);
 }
 
 OnEntry();
