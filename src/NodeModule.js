@@ -4,6 +4,9 @@ export class Node {
     this.left = leftNode;
     this.right = rightNode;
   }
+  getData() {
+    return this.data;
+  }
   setLeftNode(newNode) {
     this.left = newNode;
   }
